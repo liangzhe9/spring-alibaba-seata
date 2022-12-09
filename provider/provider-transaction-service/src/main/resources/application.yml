@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: provider-transaction
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.6.162:8848
+    sentinel:
+      transport:
+        enable: true
+        port: 8720
+        dashboard: localhost:8081
+    alibaba:
+      seata:
+        tx-service-group: tx-group
+
+dubbo:
+  scan:
+    base-packages: com.devin.spring.cloud.alibaba.provider.service
+  protocol:
+    name: dubbo
+    port: -1
+  provider:
+    loadbalance: roundrobin
+  registry:
+    address: nacos://192.168.6.162:8848
+
+#logging:
+#  level:
+#    com.devin.spring.cloud.alibaba.provider.mapper: debug
+#    io.seata.core: debug

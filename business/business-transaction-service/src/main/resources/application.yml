@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: business-transaction
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.6.162:8848
+    sentinel:
+      transport:
+        port: 8722
+        dashboard: localhost:8081
+
+dubbo:
+  scan:
+    base-packages: com.devin.spring.cloud.alibaba.business.controller
+  protocol:
+    name: dubbo
+    port: -1
+  provider:
+    loadbalance: roundrobin
+  registry:
+    address: nacos://192.168.6.162:8848
+
+server:
+  port: 12001
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
